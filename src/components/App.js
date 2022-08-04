@@ -62,9 +62,9 @@ function App() {
 
 		<ul className="list">{
 				list.map((ele)=>{
-					return (<>
-					<li key={ele.id} className="list" >
-						{ele.text}<br></br>
+					return (
+					<li key={ele.id} className="list">
+						<p classname="list">{ele.text}</p>
 						<button id={ele.id} className="edit" onClick={(e)=>{edit(e)}}	type="button">Edit</button>
 						<button id={ele.id} className="delete" onClick={(e)=>{remove(e)}}	type="button">Delete</button>
 					
@@ -77,7 +77,7 @@ function App() {
 						}
 					</li>
 					
-					</>
+					
 					)
 				})
 
