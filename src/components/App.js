@@ -55,16 +55,16 @@ function App() {
 		if(edittext.length!=0){
 			let newarr=list.map((ele)=>{
 				if(ele.id==e.target.id){
-					return {...ele,text:edittext}
+					return {...ele,text:edittext,showedit:false}
 				}
 				return ele;
 			})
 	
 			setlist(newarr);
 			setedittext("");
+			
 		}
-		const edit_item=document.querySelector('.editTask');
-		edit_item.value="";
+		
 		
 
 	}
