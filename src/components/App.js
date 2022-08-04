@@ -5,6 +5,7 @@ function App() {
 
 	const [text,settext]=useState("");
 	const [list,setlist]=useState([]);
+	
 
 	useEffect(()=>{
 		console.log(list)
@@ -15,7 +16,7 @@ function App() {
 	var num=0;
 	const addbtn=(e)=>{
 		if(text.length!=0){
-			setlist([...list,{id:list.length,text:text}])
+			setlist([...list,{id:list.length,text:text,showedit:false}])
 
 		}
 	}
@@ -27,11 +28,18 @@ function App() {
 		setlist(updatearr)
 	
 		
-		
-		
-		
 	}
+
 	const edit=(e)=>{
+		
+		// let newarr=list.map(ele=>(ele.id==e.target.id?{...ele,showedit:true}:ele));
+		let newarr=list.map((ele)=>{
+			if(ele.id==e.target.id){
+				return {...ele,showedit:true}
+			}
+			return ele;
+		})
+		setlist(newarr);
 		
 		
 		
@@ -49,8 +57,17 @@ function App() {
 				list.map((ele)=>{
 					return (<>
 					<li key={ele.id} className="list" >{ele.text}</li>
-					<button id={ele.id} onClick={(e)=>{edit(e)}}	type="button">Edit</button>
-					<button id={ele.id} onClick={(e)=>{remove(e)}}	type="button">Delete</button>
+					<button id={ele.id} className="edit" onClick={(e)=>{edit(e)}}	type="button">Edit</button>
+					<button id={ele.id} className="delete" onClick={(e)=>{remove(e)}}	type="button">Delete</button>
+					
+					{ele.showedit &&(
+						<>
+							<input type="text"></input>
+							<button onClick={()=>{textedit()}} >Save</button>
+						</>
+					)
+					}
+					
 					</>
 					)
 				})
