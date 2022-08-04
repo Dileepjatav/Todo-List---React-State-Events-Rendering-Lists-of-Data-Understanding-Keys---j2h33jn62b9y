@@ -11,21 +11,12 @@ function App() {
 	useEffect(()=>{
 		const entertext=document.querySelector('#task');
 		entertext.value="";
-		
-		
-		
-
 	},[list,edittext])
 	
-	
-
-
 	const addbtn=(e)=>{
 		if(text.length!=0){
 			setlist([...list,{id:list.length,text:text,showedit:false}])
-			settext("");
-		
-
+			settext("");		
 		}
 	}
 	const remove=(e)=>{
@@ -33,11 +24,8 @@ function App() {
 		const updatearr=list.filter((element)=>{
 			return	element.id!=e.target.id
 		})
-		setlist(updatearr)
-	
-		
+		setlist(updatearr)			
 	}
-
 	const edit=(e)=>{
 		
 		// let newarr=list.map(ele=>(ele.id==e.target.id?{...ele,showedit:true}:ele));
@@ -63,20 +51,16 @@ function App() {
 			setlist(newarr);
 			setedittext("");
 			
-		}
-		
-		
-
+		}			
 	}
-
 
 	return (
 	<div id="main">
 	
 		<input id="task" onChange={(e)=>{settext(e.target.value)}} type="text"></input>
-		<button id="button" onClick={(e)=>{addbtn(e)}}>Add</button>
+		<button id="btn" onClick={(e)=>{addbtn(e)}}>Add</button>
 
-		<ul>{
+		<ul className="list">{
 				list.map((ele)=>{
 					return (<>
 					<li key={ele.id} className="list" >
@@ -87,7 +71,7 @@ function App() {
 						{ele.showedit &&
 							(	<>
 									<input id={ele.id} className="editTask" onChange={(e)=>{setedittext(e.target.value)}} type="text"></input>
-									<button id={ele.id} className="saveTask  " onClick={(e)=>{textedit(e)}} >Save</button>
+									<button id={ele.id} className="saveTask  " disabled={edittext.length==0} onClick={(e)=>{textedit(e)}} >Save</button>
 								</>
 							)
 						}
