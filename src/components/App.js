@@ -62,8 +62,8 @@ function App() {
 					
 					{ele.showedit &&(
 						<>
-							<input type="text"></input>
-							<button onClick={()=>{textedit()}} >Save</button>
+							<input className="editTask " type="text"></input>
+							<button className="saveTask  " onClick={()=>{textedit()}} >Save</button>
 						</>
 					)
 					}
