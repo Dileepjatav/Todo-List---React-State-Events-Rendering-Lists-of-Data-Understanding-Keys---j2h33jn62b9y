@@ -6,17 +6,25 @@ function App() {
 	const [text,settext]=useState("");
 	const [list,setlist]=useState([]);
 	const [edittext,setedittext]=useState("");
-	
 
+	
 	useEffect(()=>{
-		console.log(list)
+		const entertext=document.querySelector('#task');
+		entertext.value="";
+		
+		
 		
 
-	},[list])
+	},[list,edittext])
+	
+	
+
 
 	const addbtn=(e)=>{
 		if(text.length!=0){
 			setlist([...list,{id:list.length,text:text,showedit:false}])
+			settext("");
+		
 
 		}
 	}
@@ -54,9 +62,9 @@ function App() {
 	
 			setlist(newarr);
 			setedittext("");
-			
-
 		}
+		const edit_item=document.querySelector('.editTask');
+		edit_item.value="";
 		
 
 	}
@@ -71,17 +79,19 @@ function App() {
 		<ul>{
 				list.map((ele)=>{
 					return (<>
-					<li key={ele.id} className="list" >{ele.text}</li>
-					<button id={ele.id} className="edit" onClick={(e)=>{edit(e)}}	type="button">Edit</button>
-					<button id={ele.id} className="delete" onClick={(e)=>{remove(e)}}	type="button">Delete</button>
+					<li key={ele.id} className="list" >
+						{ele.text}<br></br>
+						<button id={ele.id} className="edit" onClick={(e)=>{edit(e)}}	type="button">Edit</button>
+						<button id={ele.id} className="delete" onClick={(e)=>{remove(e)}}	type="button">Delete</button>
 					
-					{ele.showedit &&(
-						<>
-							<input className="editTask" onChange={(e)=>{setedittext(e.target.value)}} type="text"></input>
-							<button id={ele.id} className="saveTask  " onClick={(e)=>{textedit(e)}} >Save</button>
-						</>
-					)
-					}
+						{ele.showedit &&
+							(	<>
+									<input id={ele.id} className="editTask" onChange={(e)=>{setedittext(e.target.value)}} type="text"></input>
+									<button id={ele.id} className="saveTask  " onClick={(e)=>{textedit(e)}} >Save</button>
+								</>
+							)
+						}
+					</li>
 					
 					</>
 					)
