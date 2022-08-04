@@ -5,6 +5,7 @@ function App() {
 
 	const [text,settext]=useState("");
 	const [list,setlist]=useState([]);
+	const [edittext,setedittext]=useState("");
 	
 
 	useEffect(()=>{
@@ -13,7 +14,6 @@ function App() {
 
 	},[list])
 
-	var num=0;
 	const addbtn=(e)=>{
 		if(text.length!=0){
 			setlist([...list,{id:list.length,text:text,showedit:false}])
@@ -40,10 +40,25 @@ function App() {
 			return ele;
 		})
 		setlist(newarr);
+	
+	}
+
+	const textedit=(e)=>{
+		if(edittext.length!=0){
+			let newarr=list.map((ele)=>{
+				if(ele.id==e.target.id){
+					return {...ele,text:edittext}
+				}
+				return ele;
+			})
+	
+			setlist(newarr);
+			setedittext("");
+			
+
+		}
 		
-		
-		
-		
+
 	}
 
 
@@ -62,8 +77,8 @@ function App() {
 					
 					{ele.showedit &&(
 						<>
-							<input className="editTask " type="text"></input>
-							<button className="saveTask  " onClick={()=>{textedit()}} >Save</button>
+							<input className="editTask" onChange={(e)=>{setedittext(e.target.value)}} type="text"></input>
+							<button id={ele.id} className="saveTask  " onClick={(e)=>{textedit(e)}} >Save</button>
 						</>
 					)
 					}
