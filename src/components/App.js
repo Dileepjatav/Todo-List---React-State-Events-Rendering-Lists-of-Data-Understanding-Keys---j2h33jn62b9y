@@ -64,14 +64,14 @@ function App() {
 				list.map((ele)=>{
 					return (
 					<li key={ele.id} className="list">
-						<p classname="list">{ele.text}</p>
+						{ele.text}<br></br>
 						<button id={ele.id} className="edit" onClick={(e)=>{edit(e)}}	type="button">Edit</button>
 						<button id={ele.id} className="delete" onClick={(e)=>{remove(e)}}	type="button">Delete</button>
 					
 						{ele.showedit &&
 							(	<>
 									<input id={ele.id} className="editTask" onChange={(e)=>{setedittext(e.target.value)}} type="text"></input>
-									<button id={ele.id} className="saveTask  " disabled={edittext.length==0} onClick={(e)=>{textedit(e)}} >Save</button>
+									<button id={ele.id} className="saveTask" disabled={edittext.length==0} onClick={(e)=>{textedit(e)}} >Save</button>
 								</>
 							)
 						}
