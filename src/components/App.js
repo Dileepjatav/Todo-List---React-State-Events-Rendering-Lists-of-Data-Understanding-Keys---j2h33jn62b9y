@@ -60,20 +60,20 @@ function App() {
 	<div id="main">
 	
 		<input id="task" onChange={(e)=>{settext(e.target.value)}} type="text"></input>
-		<button id="btn" onClick={(e)=>{addbtn(e)}}>Add</button>
+		<button id="btn" onClick={addbtn}>Add</button>
 
 		<ul className="list">{
 				list.map((ele)=>{
 					return (
 					<li key={ele.id} className="list">
 						{ele.text}<br></br>
-						<button id={ele.id} className="edit" onClick={(e)=>{edit(e)}}	type="button">Edit</button>
-						<button id={ele.id} className="delete" onClick={(e)=>{remove(e)}}	type="button">Delete</button>
+						<button id={ele.id} className="edit" onClick={edit}	type="button">Edit</button>
+						<button id={ele.id} className="delete" onClick={remove}	type="button">Delete</button>
 					
 						{ele.showedit &&
 							(	<>
 									<input id={ele.id} className="editTask" onChange={(e)=>{setedittext(e.target.value)}} type="text"></input>
-									<button id={ele.id} className="saveTask" disabled={edittext.length==0} onClick={(e)=>{textedit(e)}} >Save</button>
+									<button id={ele.id} className="saveTask" disabled={edittext.length==0} onClick={textedit} >Save</button>
 								</>
 							)
 						}
