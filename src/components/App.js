@@ -14,9 +14,11 @@ function App() {
 	},[list,edittext])
 	
 	const addbtn=(e)=>{
-		if(text.length!=0){
+		if(text.trim().length!==0){
 			setlist([...list,{id:list.length,text:text,showedit:false}])
 			settext("");		
+		}else{
+			return
 		}
 	}
 	const remove=(e)=>{
